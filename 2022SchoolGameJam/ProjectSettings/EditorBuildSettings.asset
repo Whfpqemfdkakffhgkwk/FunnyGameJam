@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/JaeWon/Scene/GameTitle.unity
+    guid: c5ccff4617c2b9743bfcba3569e4e825
+  - enabled: 1
+    path: Assets/HyeonSu/Scene/BreakBlockTest.unity
+    guid: 5ef47192eb332414d89b0ecb0688875a
   m_configObjects: {}

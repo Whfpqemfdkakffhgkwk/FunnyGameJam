@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         Enemys = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < Enemys.Length; i++)
         {
-            Enemys[i].gameObject.transform.DOMove(Enemys[i].transform.position - new Vector3(0, 1.5f, 0), 1f);
+            Enemys[i].gameObject.transform.DOMove(Enemys[i].transform.position - new Vector3(0, 2f, 0), 1f);
         }
     }
     void Recall()
@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < EnemyNum; i++)
         {
             int RandomRecallNum = Random.Range(0, 4);
+            int RandomRecallType = Random.Range(0, 2);
             if (EnemyRecallPoss[RandomRecallNum] != null)
             {
-                Instantiate(EnemyTypes[Random.Range(0,2)], EnemyRecallPoss[RandomRecallNum].localPosition,
-                                    EnemyRecallPoss[RandomRecallNum].localRotation);
+                Instantiate(EnemyTypes[RandomRecallType],
+                            EnemyRecallPoss[RandomRecallNum].position + EnemyTypes[RandomRecallType].transform.localPosition,
+                            EnemyTypes[RandomRecallType].transform.localRotation);
             }
             else
             {

@@ -21,7 +21,7 @@ public class Boss : MonoBehaviour
     }
     private void Start()
     {
-        gameObject.transform.DOMove(transform.position - new Vector3(0, 7f, 0), 1f);
+        gameObject.transform.DOMove(transform.position - new Vector3(0, 8f, 0), 1f);
         GameManager.Instance.maxRecall = 6;
         GameManager.Instance.minRecall = 2;
     }
@@ -33,6 +33,9 @@ public class Boss : MonoBehaviour
             Destroy(collision.gameObject);
             //파티클 나올 예정
         }
-        //
+        else if (collision.gameObject.CompareTag("Bullet"))
+        {
+            HP = 50;
+        }
     }
 }

@@ -18,6 +18,7 @@ public class HealthText : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.position = Camera.main.WorldToScreenPoint(transform.parent.transform.parent.position) - Vec3;
+        resourceText.transform.position = Camera.main.WorldToScreenPoint(transform.parent.transform.parent.position) - Vec3;
         resourceText.text = enemy.Hp.ToString();
         if (enemy.Hp <= 0)
         {

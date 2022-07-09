@@ -5,10 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    EnemyHpBar1 enemyHpBar1;
+    [SerializeField] EnemyHpBar1 enemyHpBar1;
     public int Hp;
-    int Atk;
-
     void Update()
     {
         if (Hp <= 0)

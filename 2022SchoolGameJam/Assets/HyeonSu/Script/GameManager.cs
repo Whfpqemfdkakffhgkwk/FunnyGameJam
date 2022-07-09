@@ -6,14 +6,27 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
     [SerializeField] GameObject[] EnemyTypes, BossObjs;
-    [SerializeField] GameObject Shields;
+    [SerializeField] GameObject Shields, ball;
     GameObject[] Enemys;
     int EnemyNum;
     [SerializeField] Transform[] EnemyRecallPoss;
+    public Vector3 Shotpos; 
     int bossCheck = 0, bossType = 0;
     int a = 0; //for문 몇번 도는지 확인
-    public int minRecall = 1, maxRecall = 5, RecallType = 0;
+    public int minRecall = 1, maxRecall = 5, RecallType = 0, bulletNum = 1, ShotConfirm = 0;
     private void Awake() => Instance = this;
+    private void Start()
+    {
+        NextTurn();
+    }
+    private void Update()
+    {
+        if(ShotConfirm == 1)
+        {
+            StartCoroutine(Shooting());
+            ShotConfirm = 0;
+        }
+    }
     public void NextTurn()
     {
         Recall();
@@ -36,6 +49,7 @@ public class GameManager : MonoBehaviour
         }
         bossCheck++;
     }
+    
     void Recall()
     {
         if (RecallType == 0)
@@ -68,6 +82,16 @@ public class GameManager : MonoBehaviour
         else if (RecallType == 1)
         {
             Instantiate(Shields, new Vector3(0, 10, 0), transform.rotation);
+        }
+    }
+
+    IEnumerator Shooting()
+    {
+        for (int i = 0; i < bulletNum - 1; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            GameObject a = Instantiate(ball, new Vector3(0.177f, -4.42f, 0), transform.rotation);
+            a.GetComponent<Rigidbody>().AddForce(Shotpos.normalized * 1000, ForceMode.Force);
         }
     }
 }

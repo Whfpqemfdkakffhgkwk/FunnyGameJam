@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class StartButton : MonoBehaviour
 {
+    float fadeDuration = 2;
     public void OnClickExit()
     {
         Application.Quit();

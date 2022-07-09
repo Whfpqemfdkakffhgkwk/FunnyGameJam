@@ -24,6 +24,8 @@ public class StartButton : MonoBehaviour
 
         SoundManager.Instance.audioSources[0].Play();
         SceneManager.LoadScene("BreakBlockTest");
+        SoundManager.Instance.audioSources[1].Stop();
+        SoundManager.Instance.audioSources[2].Play();
     }
     public void OnClickOption()
     {

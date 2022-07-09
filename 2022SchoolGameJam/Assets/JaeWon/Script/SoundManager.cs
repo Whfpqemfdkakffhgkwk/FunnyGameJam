@@ -11,10 +11,12 @@ public class SoundManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         Instance = this;
-    }
-    private void Update()
-    {
         audioSources[0].GetComponent<AudioSource>().volume = EffVolume;
         audioSources[1].GetComponent<AudioSource>().volume = musicVolume;
+        audioSources[2].GetComponent<AudioSource>().volume = musicVolume;
+    }
+
+    private void Update()
+    {
     }
 }

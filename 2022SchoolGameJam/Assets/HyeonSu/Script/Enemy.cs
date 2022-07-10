@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] EnemyHpBar1 enemyHpBar1;
+    public EnemyHpBar1 enemyHpBar1;
     public int Hp;
     void Update()
     {

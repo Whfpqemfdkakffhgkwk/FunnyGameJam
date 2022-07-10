@@ -6,7 +6,7 @@ using UnityEngine.UI;  // Silder class 사용하기 위해 추가합니다.
 public class EnemyHpBar1 : MonoBehaviour
 {
     
-    [HideInInspector]
+    
     public Slider slHP;
     float fSliderBarTime;
     public Vector3 Vec3;

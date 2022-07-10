@@ -10,7 +10,7 @@ public class DestoryObj : MonoBehaviour
         switch (a.tag)
         {
             case "Bullet":
-                GameManager.Instance.bulletNum--;
+                GameManager.Instance.DeletebulletNum++;
                 Destroy(a);
                 break;
             case "Enemy":

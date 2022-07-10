@@ -6,14 +6,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
     [SerializeField] GameObject[] EnemyTypes, BossObjs;
-    [SerializeField] GameObject Shields, ball;
+    [SerializeField] GameObject Shields, ball, StartBall, Select;
+    [SerializeField] GameObject SlingshotObj, DiceObj;
     GameObject[] Enemys;
     int EnemyNum;
+    float ff = 0.2f;
     [SerializeField] Transform[] EnemyRecallPoss;
     public Vector3 Shotpos; 
     int bossCheck = 0, bossType = 0;
     int a = 0; //for문 몇번 도는지 확인
-    public int minRecall = 1, maxRecall = 5, RecallType = 0, bulletNum = 1, ShotConfirm = 0;
+    public int minRecall = 1, maxRecall = 5, RecallType = 0, bulletNum = 1, DeletebulletNum = 0, ShotConfirm = 0;
     private void Awake() => Instance = this;
     private void Start()
     {
@@ -21,14 +23,25 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if(bulletNum == DeletebulletNum)
+        {
+            NextTurn();
+            ff = 0.2f;
+            DeletebulletNum = 0;
+        }
         if(ShotConfirm == 1)
         {
-            StartCoroutine(Shooting());
+            for (int i = 0; i < bulletNum - 1; i++)
+            {
+                ff += 0.2f;
+                StartCoroutine(Shooting());
+            }
             ShotConfirm = 0;
         }
     }
     public void NextTurn()
     {
+        Select.SetActive(true);
         Recall();
         Enemys = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < Enemys.Length; i++)
@@ -84,14 +97,22 @@ public class GameManager : MonoBehaviour
             Instantiate(Shields, new Vector3(0, 10, 0), transform.rotation);
         }
     }
-
+    public void Slingshot()
+    {
+        Instantiate(StartBall, new Vector3(0.177f, -4.42f, 0), transform.rotation);
+        SlingshotObj.SetActive(true);
+        DiceObj.SetActive(false);
+    }
+    public void Dice()
+    {
+        SlingshotObj.SetActive(false);
+        DiceObj.SetActive(true);
+    }
     IEnumerator Shooting()
     {
-        for (int i = 0; i < bulletNum - 1; i++)
-        {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(ff);
+            Debug.Log("asd");
             GameObject a = Instantiate(ball, new Vector3(0.177f, -4.42f, 0), transform.rotation);
             a.GetComponent<Rigidbody>().AddForce(Shotpos.normalized * 1000, ForceMode.Force);
-        }
     }
 }

@@ -19,8 +19,8 @@ public class OptionButton : MonoBehaviour
         }
         else if (startButton.isOption == false)
         {
-            gameObject.transform.DOLocalMoveY(-1000f, 0.25f).SetEase(Ease.Linear);
-            gameObject.transform.position = new Vector3(150, -1000, 0);
+            gameObject.transform.DOLocalMoveY(-10000f, 0.25f).SetEase(Ease.Linear);
+            gameObject.transform.position = new Vector3(700, -100000, 0);
         }
     }
 

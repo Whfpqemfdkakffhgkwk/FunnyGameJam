@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e904ce83f818ea6478006c3a79a05cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHpBar1: {fileID: 0}
+  enemyHpBar1: {fileID: 19142776941069391}
   Hp: 200
 --- !u!1 &7466405091574600133
 GameObject:

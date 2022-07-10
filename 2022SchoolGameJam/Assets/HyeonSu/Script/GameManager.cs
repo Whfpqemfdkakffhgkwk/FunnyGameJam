@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
+    [SerializeField] Text Roun, Sho;
     [SerializeField] GameObject[] EnemyTypes, BossObjs;
     [SerializeField] GameObject Shields, ball, StartBall, Select;
     [SerializeField] GameObject SlingshotObj, DiceObj;
     GameObject[] Enemys;
-    int EnemyNum;
+    int EnemyNum, roundcheck;
     float ff = 0.2f;
     [SerializeField] Transform[] EnemyRecallPoss;
     public Vector3 Shotpos; 
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        Roun.text = $"{roundcheck}";
+        Sho.text = $"{bulletNum}";
         if(bulletNum == DeletebulletNum)
         {
             NextTurn();
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextTurn()
     {
+        roundcheck++;
         Select.SetActive(true);
         Recall();
         Enemys = GameObject.FindGameObjectsWithTag("Enemy");
